@@ -1,0 +1,34 @@
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Makefile
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+build
+build_
+
+.vscode
+venv
+
+.project
+.cproject
+.settings
+.DS_Store
+
+*.o
+*~
+*swp
+
+# dlib
+dlib-*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+
+*.egg-info
+.eggs

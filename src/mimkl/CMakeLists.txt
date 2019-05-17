@@ -1,0 +1,7 @@
+file(GLOB sources "*.cpp")
+file(GLOB solvers_sources "solvers/*.cpp")
+file(GLOB models_sources "models/*.cpp")
+file(GLOB data_structures_sources "data_structures/*.cpp")
+file(GLOB kernels_sources "kernels/*.cpp")
+file(GLOB kernels_handler_sources "kernels/kernels_handler/*.cpp")
+add_library(mimkl ${sources} ${solvers_sources} ${models_sources} ${data_structures_sources} ${kernels_sources} ${kernels_handler_sources})
