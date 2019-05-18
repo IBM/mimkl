@@ -1,0 +1,3 @@
+add_executable(diagonal_from_square_induction.exe main.cpp)
+target_link_libraries(diagonal_from_square_induction.exe)
+add_test(NAME diagonal_from_square_induction COMMAND diagonal_from_square_induction.exe)

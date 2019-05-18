@@ -1,0 +1,12 @@
+[submodule "external/dlib"]
+	path = external/dlib
+	url = https://github.com/davisking/dlib
+[submodule "external/spdlog"]
+	path = external/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "external/pybind11"]
+	path = external/pybind11
+	url = https://github.com/pybind/pybind11
+[submodule "external/eigen3"]
+	path = external/eigen3
+	url = https://github.com/eigenteam/eigen-git-mirror.git

@@ -1,0 +1,235 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+os: linux
+sudo: required
+dist: trusty
+env:
+- MATRIX_EVAL="echo default"
+
+# https://github.com/travis-ci/travis-ci/issues/6633
+matrix:
+  include:
+    # works on Precise and Trusty
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-4.9
+      env:
+         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+
+    # works on Precise and Trusty
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-5
+      env:
+         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+
+    # works on Precise and Trusty
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+    # works on Precise and Trusty
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
+#### clang
+    # works on Precise and Trusty
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.6 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+
+    # works on Trusty
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-7 lldb-7 lld-7
+      env:
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-8 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-8 lldb-8 lld-8
+      env:
+        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
+
+
+## no OSX support by travis enterprise !!!
+    # # On OS X, the version of clang is controlled by the choice of osx_image.
+    # - os: osx
+    #   osx_image: xcode9.1 # clang 3.9
+    #   env:
+    #     - MATRIX_EVAL="CC=clang && CXX=clang++"
+  allow_failures:
+    - env: MATRIX_EVAL="echo default"
+
+    # works on Precise and Trusty
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - g++-4.9
+      env:
+         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.6 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+
+    # works on Trusty
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-7 lldb-7 lld-7
+      env:
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-8 main'
+              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
+          packages:
+            - clang-8 lldb-8 lld-8
+      env:
+        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
+
+  # fast_finish: true
+
+before_install:
+  - echo $TRAVIS_OS_NAME
+  - eval "${MATRIX_EVAL}"
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm --with-clang --with-clang-extra-tools  ; fi
+  # https://docs.anaconda.com/docs_oss/conda/travis
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh ;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  - conda create -q -n test-environment python=3.6 numpy scipy pip
+  - source activate test-environment
+
+before_script:
+  - git submodule init
+  - git submodule update
+  - $CXX --version
+  - command -v python
+  - python --version
+
+script:
+  - $CXX --version
+  - CMAKE_C_COMPILER=$CC CMAKE_CXX_COMPILER=$CXX pip install -e . --verbose
+  - python -c "import pymimkl"
+  - python -m unittest discover python/pymimkl/tests
+  - python setup.py test
+  - cd build_; make test CTEST_OUTPUT_ON_FAILURE=TRUE
+
