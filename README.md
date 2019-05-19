@@ -147,4 +147,7 @@ pybind11 [https://github.com/pybind/pybind11](https://github.com/pybind/pybind11
 
 PIMKL: Pathway-Induced Multiple Kernel Learning [https://rdcu.be/bBN6U](https://rdcu.be/bBN6U)  
 for which mimkl was developed.
-![alt text](https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41540-019-0086-3/MediaObjects/41540_2019_86_Fig6_HTML.png)
+
+<p align="center">
+  <img src="doc/figures/pimkl.png" alt="PIMKL algorithm" width=700>
+</p>
