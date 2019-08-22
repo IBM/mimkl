@@ -1,3 +1,4 @@
+services: docker
 language: cpp
 compiler:
   - gcc
@@ -232,4 +233,14 @@ script:
   - python -m unittest discover python/pymimkl/tests
   - python setup.py test
   - cd build_; make test CTEST_OUTPUT_ON_FAILURE=TRUE
+  - docker-compose -f docker/docker-compose.yml build
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: sh .travis/deploy.sh
+  on:
+    branches:
+      only:
+        - master
 
