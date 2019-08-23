@@ -44,6 +44,26 @@ Enable both:
 MIMKL_CXX_FLAGS="-march=native -fopenmp" pip install git+ssh://git@github.com/IBM/mimkl.git
 ```
 
+### Docker
+
+Pull the image from DockerHub:
+
+```sh
+docker pull drugilsberg/mimkl
+```
+
+Or directly build it from source:
+
+```
+docker-compose -f docker/docker-compose.yml build
+```
+
+Run the container: 
+
+```
+docker run -it drugilsberg/mimkl /bin/bash
+```
+
 ### Development
 
 Clone the repository:

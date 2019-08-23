@@ -9,6 +9,7 @@ build
 build_
 
 .vscode
+.devcontainer
 venv
 
 .project

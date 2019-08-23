@@ -1,0 +1,8 @@
+version: "3.2"
+services:
+  mimkl:
+    build: 
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mimkl
+    image: drugilsberg/mimkl
