@@ -6,6 +6,7 @@ RUN pip install --upgrade pip
 # mimkl installation
 WORKDIR /workspace/mimkl
 COPY . .
+RUN if [ -d "build_" ]; then rm -r build_; fi
 RUN MIMKL_CXX_FLAGS="-O3 -fopenmp" pip install -e .
 WORKDIR /workspace
 # get the entry point and make it executable

@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  depiction:
+  mimkl:
     build: 
       context: ..
       dockerfile: docker/Dockerfile
