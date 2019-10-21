@@ -153,7 +153,6 @@ if __name__ == '__main__':
             'EasyMKL'
         ],
         classifiers=[
-            'Development Status :: 3 - Beta',
             'Topic :: Scientific/Engineering :: Artificial Intelligence',
             'Topic :: Scientific/Engineering :: Mathematics',
         ],
