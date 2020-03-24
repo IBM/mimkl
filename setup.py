@@ -17,7 +17,7 @@ from setuptools.command.develop import develop as _develop
 
 SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
 PROCESSES = cpu_count()
-PROCESSES = str(PROCESSES - 1) if (PROCESSES > 1) else 1
+PROCESSES = str(PROCESSES - 1) if (PROCESSES > 1) else '1'
 
 
 class setup_pymimkl(Command):
