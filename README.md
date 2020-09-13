@@ -49,7 +49,7 @@ MIMKL_CXX_FLAGS="-march=native -fopenmp" pip install git+ssh://git@github.com/IB
 Pull the image from DockerHub:
 
 ```sh
-docker pull drugilsberg/mimkl
+docker pull tsenit/mimkl
 ```
 
 Or directly build it from source:
@@ -61,7 +61,7 @@ docker-compose -f docker/docker-compose.yml build
 Run the container: 
 
 ```
-docker run -it drugilsberg/mimkl /bin/bash
+docker run -it tsenit/mimkl /bin/bash
 ```
 
 ### Development
