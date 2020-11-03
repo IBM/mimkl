@@ -4,45 +4,49 @@ compiler:
   - gcc
   - clang
 os: linux
-sudo: required
 dist: trusty
 env:
+# https://github.com/travis-ci/travis-ci/issues/6633
 - MATRIX_EVAL="echo default"
 
-# https://github.com/travis-ci/travis-ci/issues/6633
-matrix:
+jobs:
+  fast_finish: true
   include:
-    # works on Precise and Trusty
     - compiler: gcc
       addons:
         apt:
           sources:
-            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env:
+         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
           packages:
             - g++-5
       env:
          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
-    # works on Precise and Trusty
     - compiler: gcc
       addons:
         apt:
           sources:
-            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
           packages:
             - g++-6
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
-    # works on Precise and Trusty
     - compiler: gcc
       addons:
         apt:
           sources:
-            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
           packages:
             - g++-7
       env:
@@ -52,21 +56,63 @@ matrix:
       addons:
         apt:
           sources:
-            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+            - ubuntu-toolchain-r-test
           packages:
             - g++-8
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
-    # On OS X, the version of clang is controlled by the choice of osx_image.
-    # not supported by travis enterprise
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.9
+          packages:
+            - clang-3.9
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
+          packages:
+            - clang-7 lldb-7 lld-7
+      env:
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-8
+          packages:
+            - clang-8 lldb-8 lld-8
+      env:
+        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
+
     - os: osx
       osx_image: xcode9.1 # clang 3.9
       env:
         - MATRIX_EVAL="CC=clang && CXX=clang++"
 
     - stage: Docker
+      env: MATRIX_EVAL="echo docker"  # to not match allow_failures
       before_install: skip
       install: skip
       before_script: skip
@@ -78,81 +124,20 @@ matrix:
         - docker run tsenit/mimkl python -m unittest discover mimkl/python/pymimkl/tests
         - docker run -w /workspace/mimkl tsenit/mimkl python setup.py test
         - docker run -w /workspace/mimkl tsenit/mimkl make test CTEST_OUTPUT_ON_FAILURE=TRUE
-        - docker run tsenit/mimkl bash -c 
-        - docker run tsenit/mimkl bash -c 
       deploy:
         provider: script
         skip_cleanup: true
         script: sh .travis/deploy.sh
         on:
-          branches:
-            only:
-              - master
+          branch: master
               
   allow_failures:
     - env: MATRIX_EVAL="echo default"
-
-    # works on Precise and Trusty
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            # - ubuntu-toolchain-r-test # whitelisted alias with public travis
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
-          packages:
-            - g++-4.9
-      env:
-         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
-            - sourceline: 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.6 main'
-              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages:
-            - clang-3.6
-      env:
-        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-
-    # works on Trusty
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
-            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main'
-              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages:
-            - clang-3.9
-      env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
-            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main'
-              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages:
-            - clang-7 lldb-7 lld-7
-      env:
-        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - sourceline: 'ppa:ubuntu-toolchain-r/test'
-            - sourceline: 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-8 main'
-              key_url: 'http://apt.llvm.org/llvm-snapshot.gpg.key'
-          packages:
-            - clang-8 lldb-8 lld-8
-      env:
-        - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
-  fast_finish: true
+    - env: MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+    - env: MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+    - env: MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+    - env: MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+    - env: MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
 
 before_install:
   - echo $TRAVIS_OS_NAME
