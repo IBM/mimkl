@@ -4,8 +4,7 @@ compiler:
   - clang
 os: linux
 dist: trusty
-env:
-  - MATRIX_EVAL="echo default"
+env: MATRIX_EVAL="echo default"
 # https://github.com/travis-ci/travis-ci/issues/6633
 
 jobs:
