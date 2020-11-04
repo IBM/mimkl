@@ -5,4 +5,4 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     container_name: mimkl
-    image: tsenit/mimkl
+    image: tsenit/mimkl:latest
