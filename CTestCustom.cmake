@@ -952,4 +952,9 @@ set(CTEST_CUSTOM_TESTS_IGNORE
 	dgmres_2
 	cxx11_tensor_block_access
 	cxx11_maxsizevector
+    umfpack_support_3
+    umfpack_support_4
+    klu_support_1
+    klu_support_2
+    boostmultiprec_11
 )

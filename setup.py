@@ -143,6 +143,7 @@ if __name__ == '__main__':
             'develop': develop
         },
         tests_require=["numpy", "scipy"],
+        extras_require={'testing': ["numpy", "scipy"]},
         install_requires=["numpy"],
         test_suite="setup.test_suite",
         license="MIT",

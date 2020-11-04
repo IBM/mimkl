@@ -7,7 +7,7 @@ RUN pip install --upgrade pip
 WORKDIR /workspace/mimkl
 COPY . .
 RUN if [ -d "build_" ]; then rm -r build_; fi
-RUN MIMKL_CXX_FLAGS="-O3 -fopenmp" pip install -e .
+RUN MIMKL_CXX_FLAGS="-O3 -fopenmp" pip install -e .[testing]
 WORKDIR /workspace
 # get the entry point and make it executable
 COPY docker/docker-entrypoint.sh /usr/bin/
