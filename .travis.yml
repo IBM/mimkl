@@ -34,56 +34,8 @@ jobs:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-6
-      env: MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env: MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
             - g++-8
       env: MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.6
-          packages:
-            - clang-3.6
-      env: MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-3.9
-          packages:
-            - clang-3.9
-      env: MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-7
-          packages:
-            - clang-7 lldb-7 lld-7
-      env: MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
 
     - compiler: clang
       addons:
@@ -123,9 +75,6 @@ jobs:
   allow_failures:
     - env: MATRIX_EVAL="echo default"
     - env: MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-    - env: MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-    - env: MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-    - env: MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
     - env: MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
 
 before_install:
