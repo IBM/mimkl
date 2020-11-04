@@ -64,7 +64,7 @@ jobs:
         - docker run tsenit/mimkl python -c "import pymimkl"
         - docker run tsenit/mimkl python -m unittest discover mimkl/python/pymimkl/tests
         - docker run -w /workspace/mimkl tsenit/mimkl python setup.py test
-        - docker run -w /workspace/mimkl tsenit/mimkl make test CTEST_OUTPUT_ON_FAILURE=TRUE
+        - docker run -w /workspace/mimkl/build_ tsenit/mimkl make test CTEST_OUTPUT_ON_FAILURE=TRUE
       deploy:
         provider: script
         skip_cleanup: true
