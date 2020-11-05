@@ -957,4 +957,5 @@ set(CTEST_CUSTOM_TESTS_IGNORE
     klu_support_1
     klu_support_2
     boostmultiprec_11
+	spdlog-utests
 )
