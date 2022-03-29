@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/IBM/mimkl.svg?branch=master)](https://travis-ci.org/IBM/mimkl)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5824/badge)](https://bestpractices.coreinfrastructure.org/projects/5824)
 
 # mimkl
 
